@@ -4,6 +4,14 @@ from django.contrib import messages
 from .forms import SignUpForm
 from .models import Post 
 
+def index(request):
+    posts=Post.objects.all()
+    return render(request,'index.html',{ 'posts':posts })
+
+def post(request,pk):
+    posts=Post.objects.get(id=pk)
+    return render(request,'posts.html',{'posts':posts})
+
 
 def register_user(request):
     if request.method=='POST':
@@ -40,13 +48,7 @@ def logout_user(request):
     logout(request)
     return redirect('login')
 
-def index(request):
-    posts=Post.objects.all()
-    return render(request,'index.html',{ 'posts':posts })
 
 
-def post(request,pk):
-    posts=Post.objects.get(id=pk)
-    return render(request,'posts.html',{'posts':posts})
 
 

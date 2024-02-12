@@ -1,7 +1,7 @@
 <h1>Sign Up</h1>
 
 
-<form method="POST" action="register">
+<form method="POST" action="{% url 'register' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" >Register</button>
